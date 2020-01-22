@@ -1,17 +1,18 @@
 import React from "react";
+import "./../App.css";
 
 const Todo = props => {
-  const handleToggle = id => {
-    props.dispatch({ type: "COMPLETED", id: id });
+  const handleComplete = id => {
+    props.dispatch({ type: "TODO_COMPLETED", id: id });
   };
 
   return (
-    <div className="todoArea">
+    <div>
       {props.state.map(todo => {
         return (
           <div
-            className={`todo${todo.completed ? " completed" : ""}`}
-            onClick={() => handleToggle(todo.id)}
+            className={`todo${todo.completed ? " task-scratched" : ""}`}
+            onClick={() => handleComplete(todo.id)}
             key={todo.id}
           >
             <p>{todo.item}</p>
@@ -21,18 +22,5 @@ const Todo = props => {
     </div>
   );
 };
-
-// const Todo = props => {
-//   //    uhhhhhhh
-
-//   return (
-//     <div
-//       className={props.item.completed ? "item-accomplished" : ""}
-//       onClick={() => props.toggleClear(props.todo.id)}
-//     >
-//       <p>{props.item.task}</p>
-//     </div>
-//   );
-// };
 
 export default Todo;

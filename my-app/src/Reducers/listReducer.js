@@ -1,18 +1,6 @@
 export const initialState = [
   {
-    item: "Learn about reducers",
-    completed: false,
-    id: Date.now()
-  },
-
-  {
-    item: "Eat booze",
-    completed: false,
-    id: Date.now()
-  },
-
-  {
-    item: "get that toilet sparklin",
+    item: "Beat yourself up over Unit 3",
     completed: false,
     id: Date.now()
   }
@@ -21,19 +9,21 @@ export const initialState = [
 export const listReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      const newTodo = {
-        item: action.payload,
-        id: Date.now(),
-        completed: false
-      };
-      return [...state, newTodo];
+      return [
+        ...state,
+        {
+          item: action.payload,
+          completed: false,
+          id: Date.now()
+        }
+      ];
 
     case "TODO_COMPLETED":
       return state.map(e =>
         e.id === action.id ? { ...e, completed: !e.completed } : e
       );
 
-    case "REMOVE":
+    case "REMOVE_TODO":
       return state.filter(e => !e.completed);
 
     default:
